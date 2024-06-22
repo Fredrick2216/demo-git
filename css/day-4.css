@@ -1,0 +1,15 @@
+.heading {
+    color: red;
+    font-family: "Oswald", sans-serif;
+    font-size: 35px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-align: center;
+}
+
+.paragraph {
+    color: blue;
+    font-family: "Oswald", sans-serif;
+    font-size: 20px;
+    font-weight: 1000;
+}
