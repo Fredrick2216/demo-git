@@ -1,0 +1,55 @@
+.bg-img {
+    background-image: url('../todolistbg.webp');
+    height: 1000px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.background {
+    background-color: orange;
+    font-family: "Roboto", sans-serif;
+    color: white;
+    margin-left: 220px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 18px;
+    padding-bottom: 15px;
+    font-size: 25px;
+}
+
+.heading {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: left;
+    margin-left: 180px;
+    font-size: 60px;
+}
+
+.paragraph {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: left;
+    margin-right: 40px;
+    font-size: 25px;
+}
+
+.para2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: left;
+    margin-right: 720px;
+    font-size: 25px;
+}
+
+.heading2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: left;
+    font-size: 25px;
+}
+
+.final {
+    color: white;
+    margin-left: 210px;
+    text-decoration: underline;
+}
