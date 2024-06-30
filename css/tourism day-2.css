@@ -1,7 +1,12 @@
+{
+    margin: 0;
+    padding: 0;
+}
+
 .bg-image {
     background-image: url('../beautiful-tropical-empty-beach-sea-ocean-with-white-cloud-blue-sky-background_74190-13668.avif');
-    height: 580px;
+    height: 700px;
     width: 300px;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 }
