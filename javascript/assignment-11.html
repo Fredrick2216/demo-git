@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+    <div class="2xl:container mx-auto h-[100%]">
+        <div class="w-[60%] mx-auto grid grid-cols-1 mr-20 mt-40">
+            <div class="h-[100%] w-[60%]">
+                <div class="bg-black shadow-lg border-solid border-current px-5 py-20">
+                    <h1 class="text-[30px] ml-20 text-white">UPDATE PASSWORD</h1>
+
+                    <div class="px-2 py-6">
+                        <form id="form">
+                            <div class="mb-4">
+                                <label for="password" class="text-white block">NEW PASSWORD</label>
+                                <input type="text" placeholder="Create New Password" id="password" class="rounded-lg px-3 py-2 border border-grey-500 mt-2 w-full" required>
+                                <p id="passwordError" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="confirm" class="text-white block">CONFIRM PASSWORD</label>
+                                <input type="text" placeholder="Confirm Password" id="confirm" class="rounded-lg px-3 py-2 border border-grey-500 mt-2 w-full" required>
+                                <p id="confirmpasswordError" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+
+                            <button type="submit" class="text-white text-[11px] bg-blue-500 px-4 py-2 ml-40 mt-7">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <script>
+        const form = document.getElementById("form");
+
+        const passwordElement = document.getElementById("password");
+        const confirmpasswordElement = document.getElementById("confirm");
+
+        const passwordError = document.getElementById("passwordError");
+        const confirmpasswordError = document.getElementById("confirmpasswordError");
+
+        passwordElement.addEventListener("blur", (e) => {
+            if (e.target.value == "") {
+                passwordError.textContent = "*Required";
+                passwordError.style.color = "red";
+            } else {
+                passwordError.textContent = "";
+            }
+        });
+
+        confirmpasswordElement.addEventListener("blur", (e) => {
+            if (e.target.value == "") {
+                confirmpasswordError.textContent = "*Required";
+                confirmpasswordError.style.color = "red";
+            } else {
+                confirmpasswordError.textContent = "";
+            }
+        });
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const password = passwordElement.value;
+            const confirmpassword = confirmpasswordElement.value;
+            let isValid = true;
+
+            const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (password === "") {
+                passwordError.textContent = "*Required";
+                passwordError.style.color = "red";
+                isValid = false;
+            } else if (!password.match(passwordRegex)) {
+                passwordError.textContent = "Enter a valid password";
+                passwordError.style.color = "red";
+                isValid = false;
+            } else {
+                passwordError.textContent = "";
+            }
+
+            if (confirmpassword === "") {
+                confirmpasswordError.textContent = "*Required";
+                confirmpasswordError.style.color = "red";
+
+            } else if (password !== confirmpassword) {
+                confirmpasswordError.textContent = "Passwords do not match";
+                confirmpasswordError.style.color = "red";
+
+            } else {
+                confirmpasswordError.textContent = "";
+            }
+
+            if (isValid) {
+                saveFormData(password, confirmpassword);
+            }
+        });
+
+        const saveFormData = (password, confirmpassword) => {
+            const firebaseConfig = {
+                apiKey: "AIzaSyAqg4ajVXp7Wml5Mp1-64VHUxx_qUrGw-0",
+                authDomain: "form-8295f.firebaseapp.com",
+                projectId: "form-8295f",
+                storageBucket: "form-8295f.appspot.com",
+                messagingSenderId: "725243667535",
+                appId: "1:725243667535:web:28f28eac021a4e9446b63a"
+            };
+
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+
+            const db = firebase.firestore();
+
+            db.collection("ReqForm").add({
+                password: password,
+                confirmpassword: confirmpassword
+            }).then(() => {
+                form.reset();
+            }).catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        }
+    </script>
+
+</body>
+
+</html>
