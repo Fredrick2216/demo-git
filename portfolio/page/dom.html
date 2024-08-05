@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+
+<body>
+    <p id="para">Hello World</p>
+    <button id="btn">Click Me</button>
+
+    <script>
+        /** * DOM APIs
+         * ===>Methods
+         * => Getter Methods [It will help us in getting DOM Elements]
+         *  - Get elementsByid
+         *
+         * ==> Setter Methods [It will help us in adding new elements]
+         *
+         *
+         * ==> Properties
+         * - Its will helps in changes content
+         *
+         *
+         *
+         *
+         *
+         * **/
+        const para = document.getElementByid("para")
+        console.log(para)
+
+        const btn = document.getElementByid("btn")
+        btn.addEventListener("click", () == > {
+            console.log("Btn clicked")
+        })
+    </script>
+
+</body>
+
+</html>

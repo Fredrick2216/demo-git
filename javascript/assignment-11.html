@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!--FireBase SDK-->
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
 
 <body>
@@ -68,67 +73,70 @@
         });
 
         form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const password = passwordElement.value;
-            const confirmpassword = confirmpasswordElement.value;
-            let isValid = true;
+                    e.preventDefault();
+                    const password = passwordElement.value;
+                    const confirmpassword = confirmpasswordElement.value;
+                    let isValid = true;
 
-            const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-            if (password === "") {
-                passwordError.textContent = "*Required";
-                passwordError.style.color = "red";
-                isValid = false;
-            } else if (!password.match(passwordRegex)) {
-                passwordError.textContent = "Enter a valid password";
-                passwordError.style.color = "red";
-                isValid = false;
-            } else {
-                passwordError.textContent = "";
-            }
+                    document.getElementById('passwordForm').addEventListener('submit', function(event) {
+                        event.preventDefault();
+                        const password = document.getElementById('password').value;
+                        const passwordError = document.getElementById('passwordError');
+                        let isValid = true;
 
-            if (confirmpassword === "") {
-                confirmpasswordError.textContent = "*Required";
-                confirmpasswordError.style.color = "red";
+                        if (!password.match(passwordRegex)) {
+                            passwordError.textContent = "Enter a valid password";
+                            passwordError.style.color = "red";
+                            isValid = false;
+                        } else {
+                            passwordError.textContent = "";
+                        }
 
-            } else if (password !== confirmpassword) {
-                confirmpasswordError.textContent = "Passwords do not match";
-                confirmpasswordError.style.color = "red";
+                        if (confirmpassword === "") {
+                            confirmpasswordError.textContent = "*Required";
+                            confirmpasswordError.style.color = "red";
 
-            } else {
-                confirmpasswordError.textContent = "";
-            }
+                        } else if (password !== confirmpassword) {
+                            confirmpasswordError.textContent = "Passwords do not match";
+                            confirmpasswordError.style.color = "red";
 
-            if (isValid) {
-                saveFormData(password, confirmpassword);
-            }
-        });
+                        } else {
+                            confirmpasswordError.textContent = "";
+                        }
 
-        const saveFormData = (password, confirmpassword) => {
-            const firebaseConfig = {
-                apiKey: "AIzaSyAqg4ajVXp7Wml5Mp1-64VHUxx_qUrGw-0",
-                authDomain: "form-8295f.firebaseapp.com",
-                projectId: "form-8295f",
-                storageBucket: "form-8295f.appspot.com",
-                messagingSenderId: "725243667535",
-                appId: "1:725243667535:web:28f28eac021a4e9446b63a"
-            };
+                        if (isValid) {
+                            saveFormData(password, confirmpassword);
+                        }
+                    });
 
-            if (!firebase.apps.length) {
-                firebase.initializeApp(firebaseConfig);
-            }
+                    const saveFormData = (password, confirmpassword) => {
+                        const firebaseConfig = {
+                            apiKey: "AIzaSyChEKeSn4E7wThHbvHaaOqLhrraF99f1G8",
+                            authDomain: "password-882e6.firebaseapp.com",
+                            databaseURL: "https://password-882e6-default-rtdb.asia-southeast1.firebasedatabase.app",
+                            projectId: "password-882e6",
+                            storageBucket: "password-882e6.appspot.com",
+                            messagingSenderId: "51508015121",
+                            appId: "1:51508015121:web:15f5a98f296bcd2882c1b0"
+                        };
 
-            const db = firebase.firestore();
+                        if (!firebase.apps.length) {
+                            firebase.initializeApp(firebaseConfig);
+                        } else {
+                            firebase.app(); // if already initialized, use that one
+                        }
 
-            db.collection("ReqForm").add({
-                password: password,
-                confirmpassword: confirmpassword
-            }).then(() => {
-                form.reset();
-            }).catch((error) => {
-                console.error("Error writing document: ", error);
-            });
-        }
+                        // Reference to the Realtime Database
+                        const realtimeDbRef = firebase.database().ref("ReqForm");
+
+                        // Pushing data to the Realtime Database
+                        realtimeDbRef.push({
+                            password: password,
+                            confirmpassword: confirmpassword
+                        });
+                    }
     </script>
 
 </body>

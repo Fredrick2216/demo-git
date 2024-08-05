@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>counter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <p>counter</p>
+    <p class="text-black" id="counter">0</p>
+    <button id="subbtn ">-</button>
+    <button id="resetbtn ">Reset</button>
+    <button id="addbtn ">+</button>
+
+    <script>
+        const counter = document.getElementById("counter")
+        const addbtn = document.getElementById("addbtn")
+        const subbtn = document.getElementById("subbtn")
+
+        const reset = document.getElementById("resetbtn")
+
+        addbtn.addEventListener("click", () => {
+
+
+            counter.textContent = parseInt(counter.textContent) + 1
+
+            //counter.style.color = "green"
+            console.log(counter.classList.value)
+            counter.classList.value = "text-green-500"
+
+        })
+        subbtn.addEventListener("click", () => {
+
+            counter.textContent = parseInt(counter.textContent) - 1
+            counter.style.color = "red"
+
+
+        })
+        reset.addEventListener("click", () => {
+
+            counter.textContent = 0
+            counter.classList.value = "text-black"
+
+        })
+    </script>
+
+
+</body>
+
+</html>

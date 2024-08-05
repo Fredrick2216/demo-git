@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMS</title>
+
+    <!--FireBase SDK-->
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+
+<body>
+
+    <form id="form ">
+        <label for="email">Email</label>
+        <input type="text" placeholder="Enter your email" id="email" required>
+        <p id="emailError"></p>
+
+        <label for="pass">Password</label>
+        <input type="text" placeholder="Enter your password" id="pass" required>
+        <p id="passwordError"></p>
+
+        <button>Submit</button>
+    </form>
+
+    <script>
+        const form = document.getElementById("form");
+
+        const emailElement = document.getElementById("email");
+        const passwordElement = document.getElementById("pass");
+
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
+
+        emailElement.addEventListener("blur", (e) => {
+            if (e.target.value == "") {
+                emailError.textContent = "*Required";
+                emailError.style.color = "red";
+            } else {
+                emailError.textContent = "";
+            }
+        });
+
+        passwordElement.addEventListener("blur", (e) => {
+            if (e.target.value == "") {
+                passwordError.textContent = "*Required";
+                passwordError.style.color = "red";
+            } else {
+                passwordError.textContent = "";
+            }
+        });
+
+        const validFormData = (email, password) => {
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+$/;
+
+            if (email === "") {
+                emailError.textContent = "*Required";
+                emailError.style.color = "red";
+            } else if (!email.match(emailRegex)) {
+                emailError.textContent = "Enter a valid email";
+                emailError.style.color = "red";
+            } else {
+                emailError.textContent = "";
+            }
+
+            if (password === "") {
+                passwordError.textContent = "*Required";
+                passwordError.style.color = "red";
+            } else {
+                passwordError.textContent = "";
+            }
+        };
+
+        const saveFormData = (email, password) => {
+            const firebaseConfig = {
+                apiKey: "AIzaSyAqg4ajVXp7Wml5Mp1-64VHUxx_qUrGw-0",
+                authDomain: "form-8295f.firebaseapp.com",
+                projectId: "form-8295f",
+                storageBucket: "form-8295f.appspot.com",
+                messagingSenderId: "725243667535",
+                appId: "1:725243667535:web:28f28eac021a4e9446b63a"
+            };
+
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+
+            const db = firebase.firestore();
+
+            db.collection("ReqForm").add({
+                email: email,
+                password: password
+            }).then(() => {
+                form.reset();
+            }).catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        };
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const emailValue = emailElement.value;
+            const passwordValue = passwordElement.value;
+
+            validFormData(emailValue, passwordValue);
+
+            saveFormData(emailValue, passwordValue);
+        });
+    </script>
+
+</body>
+
+</html>

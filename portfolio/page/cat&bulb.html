@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat & Bulb</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <img src="https://ik.imagekit.io/ixmizw7px/dom/light-bulbs-isolated_23-2151045845.avif?updatedAt=1721661795294" alt="Bulb" class="h-44" id="Bulb">
+    <img src="https://ik.imagekit.io/ixmizw7px/dom/7a9d0d3e2678927b6d1994d9b078030b.jpg?updatedAt=1721661648172" alt="cat" class="h-44" id="cat">
+
+    <p id="para">Switch On</p>
+    <button class="bg-red-500" id="off">Off</button>
+    <button class="bg-green-500" id="on">On</button>
+
+
+    <script>
+        const Bulb = document.getElementById(Bulb)
+        const cat = document.getElementById(cat)
+
+        const para = document.getElementById(para)
+        const btnon = document.getElementById(on)
+        const btnoff = document.getElementById(off)
+
+        btnon.addEventListener("click", () => {
+            console.log("on button clicked")
+            cat.src = "https://ik.imagekit.io/ixmizw7px/dom/7a9d0d3e2678927b6d1994d9b078030b.jpg?"
+            Bulb.src = "https://ik.imagekit.io/ixmizw7px/dom/7a9d0d3e2678927b6d1994d9b078030b.jpg?"
+            para.textContent = "switch on"
+
+        })
+
+        btnoff.addEventListener("click", () => {
+            console.log("off button clicked")
+            cat.src = "https://ik.imagekit.io/ixmizw7px/dom/69e3e266c21b39d5795db397aa1b6b84.jpg?"
+            Bulb.src = "https://ik.imagekit.io/ixmizw7px/dom/hanging-light-bulb-white-background_322958-4647.avif?"
+            para.textContent = "switch off"
+        })
+    </script>
+</body>
+
+</html>

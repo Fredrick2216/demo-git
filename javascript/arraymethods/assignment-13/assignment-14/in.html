@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bacon Ipsum API Fetch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .bacon-ipsum {
+            margin-top: 20px;
+            color: #555;
+        }
+        
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        
+        .loading {
+            color: #007bff;
+        }
+        
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bacon Ipsum Text</h1>
+        <div id="bacon-ipsum" class="bacon-ipsum">
+            <!-- Fetched data will be displayed here -->
+        </div>
+        <div id="error-message" class="error"></div>
+        <div id="loading-message" class="loading"></div>
+        <button id="refresh-button">Refresh Bacon Ipsum</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
