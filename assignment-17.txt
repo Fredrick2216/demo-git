@@ -1,0 +1,65 @@
+REACT ASSIGNMENT- THEORY
+
+1. What is Emmet?
+   - Emmet is a plugin for text editors that enables high-speed coding through abbreviations for HTML, CSS, and other languages.
+
+2. Difference between a Library and Framework?
+   - A library offers specific functionality to be used as needed, while a framework provides a complete structure and dictates the architecture of your application.
+
+3. What is CDN? Why do we use it?
+   - A Content Delivery Network (CDN) is a network of servers that deliver web content to users based on their geographic location, improving load times and reducing latency.
+
+4. Why is React known as React?
+   - React is named for its ability to react to data changes, efficiently updating and rendering components to reflect these changes.
+
+5. What is crossorigin in the script tag?
+   - The `crossorigin` attribute in the script tag is used to handle CORS (Cross-Origin Resource Sharing) requests, specifying how the script should be fetched and handled.
+
+6. What is the difference between React and ReactDOM?
+   - React is the core library for building user interfaces, while ReactDOM is the library responsible for rendering React components to the DOM.
+
+7. What is the difference between react.development.js and react.production.js files via CDN?
+   - `react.development.js` includes helpful warnings and error messages for development, while `react.production.js` is optimized for performance and is minified for production use.
+
+8. What is async and defer?
+   - `async` loads the script asynchronously and executes it as soon as it’s loaded, while `defer` loads the script in parallel and executes it after the HTML is fully parsed.
+
+---------------------------------------------------------------------------------------------------------------------------
+CODING
+
+ANSWER:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <!-- React and ReactDOM CDN links -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script>
+        const heading = React.createElement('h1', { className: 'heading' }, 'Heading');
+
+        const nestedReactElements = React.createElement(
+            'div', 
+            { id: '1' }, 
+            React.createElement(
+                'div', 
+                { id: '2' }, 
+                React.createElement('h1', { className: 'heading' }, 'Heading'),
+                React.createElement('h1', { className: 'heading' }, 'Heading')
+            )
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(nestedReactElements);
+    </script>
+</body>
+</html>
+
+
