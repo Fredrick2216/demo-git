@@ -1,0 +1,1 @@
+export const Bmw_image = "https://ik.imagekit.io/ixmizw7px/bmw/360_F_420384111_5fzxWlWxvB7bg5BROxfKdBbgBYB2TwGP.jpg?updatedAt=1723908370876"
